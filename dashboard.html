@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Student Management System{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<div class="stats">
+    <div class="stat-card">
+        <h3>{{ total_students }}</h3>
+        <p>Total Students</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ avg_cgpa }}</h3>
+        <p>Average CGPA</p>
+    </div>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <a href="/create" class="btn btn-primary">➕ Add New Student</a>
+</div>
+
+{% if students %}
+<table>
+    <thead>
+        <tr>
+            <th>Roll Number</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>CGPA</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.roll_number }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.department }}</td>
+            <td>Year {{ student.year }}</td>
+            <td>{{ student.cgpa }}</td>
+            <td>
+                <div class="actions">
+                    <a href="/view/{{ student.id }}" class="btn btn-primary">View</a>
+                    <a href="/edit/{{ student.id }}" class="btn btn-warning">Edit</a>
+                    <a href="/delete/{{ student.id }}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="text-align: center; padding: 40px; color: #6c757d;">
+    No students found. <a href="/create">Add your first student</a>
+</p>
+{% endif %}
+{% endblock %}

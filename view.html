@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}View Student - Student Management System{% endblock %}
+
+{% block content %}
+<h2>Student Details</h2>
+
+<div style="background: #f8f9fa; padding: 30px; border-radius: 8px; margin-top: 20px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div>
+            <strong style="color: #6c757d;">Roll Number</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.roll_number }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Full Name</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.name }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Email</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.email }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Phone</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.phone }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Department</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.department }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Year</strong>
+            <p style="font-size: 18px; margin-top: 5px;">Year {{ student.year }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">CGPA</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.cgpa }}</p>
+        </div>
+
+        <div>
+            <strong style="color: #6c757d;">Enrollment Date</strong>
+            <p style="font-size: 18px; margin-top: 5px;">{{ student.enrollment_date.strftime('%Y-%m-%d') }}</p>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 30px; display: flex; gap: 10px;">
+    <a href="/edit/{{ student.id }}" class="btn btn-warning">Edit Student</a>
+    <a href="/delete/{{ student.id }}"
+       class="btn btn-danger"
+       onclick="return confirm('Are you sure you want to delete this student?')">Delete Student</a>
+    <a href="/" class="btn btn-primary">Back to Dashboard</a>
+</div>
+{% endblock %}
